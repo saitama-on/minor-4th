@@ -1,0 +1,569 @@
+{
+   "1": {
+      "title of project": "Generating MCQ from any text or PDF using ML",
+      "Area of Research": "ML: NLP/Image Processing",
+      "Faculty": "Dr. Abhishek Sharma",
+      "Group Members": [
+         "CHANCHAL  CHANDRA: 231000016",
+         "VRIDDHI AMIT  JAIN: 231000059",
+         "231020027"
+      ],
+      "Category": "AI/ML"
+   },
+   "2": {
+      "title of project": "Inventory/Shopping/Library System",
+      "Area of Research": "Hybrid ( Hardware + Software)",
+      "Faculty": "Dr. Anurag Singh",
+      "Group Members": [
+         "PARV PATIDAR  : 231010234",
+         "SHRAWAN KUMAR BHAGAT: 231010245",
+         "SOHEL PRATAP SINGH: 231010247"
+      ],
+      "Category": "Hardware/Electronics"
+   },
+   "3": {
+      "title of project": "REVAMP : Revenue-Driven Evaluation and Monetization Platform",
+      "Area of Research": "Web/app development",
+      "Faculty": "Dr. Anurag Singh",
+      "Group Members": [
+         "SAHIL  KAUSHIK: 231010240"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "4": {
+      "title of project": "Time Table Scheduler using Machine Learning",
+      "Area of Research": "Machine Learning",
+      "Faculty": "Dr. Avantika Singh",
+      "Group Members": [
+         "SHIVANSHU VISHWAKARMA  : 231020447",
+         "ANISH DEEP TOPPO: 231020410",
+         "AVIJEET PARTH SONI: 231020416"
+      ],
+      "Category": "AI/ML"
+   },
+   "5": {
+      "title of project": "Electronic Circuits",
+      "Area of Research": "Circuit analysis",
+      "Faculty": "Dr. Deepika Gupta",
+      "Group Members": [
+         "PALAK  MAHESHWARI: 231010233",
+         "ANANYA  RAJAWAT: 231010208"
+      ],
+      "Category": "Hardware/Electronics"
+   },
+   "6": {
+      "title of project": "Electronic Circuit and Devices",
+      "Area of Research": "Electronic Circuit and Devices",
+      "Faculty": "Dr. Deepika Gupta",
+      "Group Members": [
+         "AMRIT SINGH  : 231010207",
+         "ANSHUL PRATAP SEN  : 231010211",
+         "DIVYA KUMAR BANJARE: 231010216",
+         "SAHIL  BANJARE: 231010239"
+      ],
+      "Category": "Hardware/Electronics"
+   },
+   "7": {
+      "title of project": "Electronic Devices and Circuits",
+      "Area of Research": "Electronic Devices and Circuits",
+      "Faculty": "Dr. Deepika Gupta",
+      "Group Members": [
+         "ADITYA RAJ  : 231010205",
+         "HIMANSHU SINGH KOTHARIYA  : 231010218"
+      ],
+      "Category": "Hardware/Electronics"
+   },
+   "8": {
+      "title of project": "Blockchain Based E-Voting System",
+      "Area of Research": "Blockchain",
+      "Faculty": "Dr. Gulshan Soni",
+      "Group Members": [
+         "YASH MOHAN JOSHI  : 231000060",
+         "AANCHAL RAJAWAT  : 231000001",
+         "SHARMA MOHIT  : 231020444",
+         "NISHIKANT  KUMAR: 231020434"
+      ],
+      "Category": "Blockchain"
+   },
+   "9": {
+      "title of project": "IIITNR Connect",
+      "Area of Research": "Web development",
+      "Faculty": "Dr. Kavita Jaiswal",
+      "Group Members": [
+         "PRANJAL AGRAWAL  : 231010236",
+         "PRATEEK  RATHI: 231010237",
+         "SRIJAN  SINHA: 231010249"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "10": {
+      "title of project": "Sentiment Analysis on Mobile Phone Reviews Using Supervised Learning Techniques\u00e2\u20ac\u2039",
+      "Area of Research": "Machine Learning",
+      "Faculty": "Dr. Kavita Jaiswal",
+      "Group Members": [
+         "GAURAV  SAHU: 231020422",
+         "SUMIT  BARIK: 231020455",
+         "SHAURYA  KUMAR: 231020446"
+      ],
+      "Category": "AI/ML"
+   },
+   "11": {
+      "title of project": "TBD",
+      "Area of Research": "Machine Learning",
+      "Faculty": "Dr. Kavita Jaiswal",
+      "Group Members": [
+         "211000036",
+         "211010228"
+      ],
+      "Category": "AI/ML"
+   },
+   "13": {
+      "title of project": "Quiz website",
+      "Area of Research": "\"Developing an engaging online platform for interactive quizzes and educational projects to enhance learning through gamification and personalized content.\"",
+      "Faculty": "Dr. Krishnanand Vishwakarma",
+      "Group Members": [
+         "AARTI  NETAM: 231010201",
+         "ANJALI  DUGGA: 231010210",
+         "DEEPIKA  : 231010214",
+         "GAYATRI  WATTI: 231000022"
+      ],
+      "Category": "other"
+   },
+   "14": {
+      "title of project": "Road pothole detection using deep learning",
+      "Area of Research": "Deep Learning",
+      "Faculty": "Dr. Krishnanand Vishwakarma",
+      "Group Members": [
+         "DIYA  DHRUV: 231000021",
+         "NEERAJ  NETAM: 231000037",
+         "ADARSH  GOND: 231020404",
+         "UDAY  TIWARI: 231010255"
+      ],
+      "Category": "other"
+   },
+   "15": {
+      "title of project": "Tourism Website for Chhattisgarh",
+      "Area of Research": "Tourism Infrastructure and Development",
+      "Faculty": "Dr. Lakhindar Murmu",
+      "Group Members": [
+         "KESHAV  PRASAD: 231000028",
+         "KIRTI  PAINKRA: 231000029",
+         "SAKSHI  SONKER: 231000048"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "16": {
+      "title of project": "Online bus tracking system",
+      "Area of Research": "Software Development",
+      "Faculty": "Dr. Lakhindar Murmu",
+      "Group Members": [
+         "MUKUND  THAKUR: 231010230",
+         "DHARMENDRA  DHRUW: 231010215",
+         "231020215"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "17": {
+      "title of project": "Expense tracker",
+      "Area of Research": "App development",
+      "Faculty": "Dr. Lakhindar Murmu",
+      "Group Members": [
+         "RATAN RAJ PAIKRA: 231000046",
+         "OMKAR  MARKAM: 231010232",
+         "SATYENDRA KUMAR TANDAN: 231010242",
+         "ANITA  : 231020411"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "18": {
+      "title of project": "CampusCart",
+      "Area of Research": "Web Development",
+      "Faculty": "Dr. Maifuz Ali",
+      "Group Members": [
+         "A AYUSH  MENON: 231000002",
+         "VIRAT  PATEL: 231010258",
+         "SAGNIK MUKHERJEE  : 231020441"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "19": {
+      "title of project": "Eye CheckUp and Appointment App",
+      "Area of Research": "App Development",
+      "Faculty": "Dr. Maifuz Ali",
+      "Group Members": [
+         "AKASH KUMAR  : 231020408",
+         "ADITYA KUMAR NAYAK  : 231000005",
+         "ADARSH  RAJ: 231020405"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "20": {
+      "title of project": "Road pothole detection using deep learning",
+      "Area of Research": "Deep Learning",
+      "Faculty": "Dr. Maifuz Ali",
+      "Group Members": [
+         "DIYA  DHRUV: 231000021",
+         "ADARSH  GOND: 231020404",
+         "UDAY  TIWARI: 231010255",
+         "NEERAJ  NETAM: 231000037"
+      ],
+      "Category": "other"
+   },
+   "22": {
+      "title of project": "Design and Implementation of Digital Low Power Energy Harvesting Techniques in DC- DC Converter for Sensor Nodes of Internet of Things",
+      "Area of Research": "Digital power management circuit",
+      "Faculty": "Dr. Manoj Kumar Majumder",
+      "Group Members": [
+         "MEHUL GITESH AGRAWAL  : 231010227",
+         "MITESH  PHERWANI: 231010228"
+      ],
+      "Category": "Hardware/Electronics"
+   },
+   "23": {
+      "title of project": "Wireless recharging of Electric Vehicle through EMF Inductive Power Transfer",
+      "Area of Research": "Inductive Power Transfer",
+      "Faculty": "Dr. Punya P. Paltani",
+      "Group Members": [
+         "SAYYED RAAHIM ADNAN: 231010243",
+         "SOHAM VINOD KAMBLE: 231010246",
+         "TANISHA  JAIN: 231010252"
+      ],
+      "Category": "other"
+   },
+   "24": {
+      "title of project": "Dynamic pricing",
+      "Area of Research": "Artificial intelligence and web development",
+      "Faculty": "Dr. Punya P. Paltani",
+      "Group Members": [
+         "MURALI  MALVIYA: 231020433",
+         "HIMANSHU MUSHAHARY  : 231020425"
+      ],
+      "Category": "AI/ML"
+   },
+   "25": {
+      "title of project": "Automated CG Quota Seat Allotment System",
+      "Area of Research": "Web Development",
+      "Faculty": "Dr. Punya P. Paltani",
+      "Group Members": [
+         "PARTHSARTHI  DUTT: 231020435",
+         "SHASHANK MISHRA  : 231020445",
+         "ADITYA KUMAR JHA: 231020406"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "26": {
+      "title of project": "Real time object measuremen",
+      "Area of Research": "Computer Vision",
+      "Faculty": "tDr. Punya P. Paltani",
+      "Group Members": [
+         "YOGENDRA KUMAR THAKUR: 231000061",
+         "SHREY  OMER: 231020449",
+         "SAHIL  BANJARE: 231010239"
+      ],
+      "Category": "other"
+   },
+   "27": {
+      "title of project": "GPU Resource Pooling",
+      "Area of Research": "WEB-D",
+      "Faculty": "Dr. Ramakrishna Bandi",
+      "Group Members": [
+         "KARTIK PANDEY  : 231000027",
+         "MUBASHSHIR AHMED KHAN: 231000035",
+         "PRITESH  BANJARE: 231000043"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "28": {
+      "title of project": "A platform to help job seekers define their profile and skills in a dynamic and interactive way, allowing them to showcase their achievements and connect with potential employers",
+      "Area of Research": "Web Development",
+      "Faculty": "Dr. Ramakrishna Bandi",
+      "Group Members": [
+         "PRIYADARSHI  SATYAKAM: 231000044",
+         "ALISHA  TRIPATHI: 231000006",
+         "231024030",
+         "KAUSHAL RANJAN  : 231010221"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "29": {
+      "title of project": "Virtual Attendance System for IIIT NR",
+      "Area of Research": "App Development",
+      "Faculty": "Dr. Ramakrishna Bandi",
+      "Group Members": [
+         "SHREY  OMER: 231020449",
+         "SUJAL  GOEL: 231020453",
+         "PRANJAL  SHARMA: 231020437"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "30": {
+      "title of project": "Admission Portal",
+      "Area of Research": "Web Development",
+      "Faculty": "Dr. Ramakrishna Bandi",
+      "Group Members": [
+         "ADITI  JOSHI: 231010204",
+         "ALOK  MISHRA: 231000007",
+         "TEJAS  KESHWANI: 231000056"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "32": {
+      "title of project": "Design of Consensus Protocol or Blockchain",
+      "Area of Research": "Blockchain Technology",
+      "Faculty": "Dr. Ruhul Amin",
+      "Group Members": [
+         "NAMAN GARG  : 231000036",
+         "ARNAV  TICKU: 231000013",
+         "VANSH GOEL  : 231000057"
+      ],
+      "Category": "Blockchain"
+   },
+   "33": {
+      "title of project": "Application of blockchain technology with digital twins",
+      "Area of Research": "Blockchain",
+      "Faculty": "Dr. Ruhul Amin",
+      "Group Members": [
+         "TARANG VARSHNEY  : 231000054",
+         "TARAN PAL SINGH  : 231000055",
+         "23101012("
+      ],
+      "Category": "Blockchain"
+   },
+   "34": {
+      "title of project": "Open cv based game controller",
+      "Area of Research": "Computer vision, Image processing",
+      "Faculty": "Dr. Ruhul Amin",
+      "Group Members": [
+         "JAIPRAKASH  SAHU: 231000024",
+         "RAHUL  DHANDORE: 231020438",
+         "KULDEEP SINGH THAKUR  : 231000031",
+         "KISLAY   DILLIWAR : 231020429"
+      ],
+      "Category": "other"
+   },
+   "35": {
+      "title of project": "IOT",
+      "Area of Research": "IOT",
+      "Faculty": "Dr. Ruhul Amin",
+      "Group Members": [
+         "SHASHANK SHEKHAR  PANDEY: 231010244",
+         "UDIT  BHATT: 231010256",
+         "ISHAN  SINGH: 231010219"
+      ],
+      "Category": "Hardware/Electronics"
+   },
+   "36": {
+      "title of project": "D-TAS : Dynamic Traffic Autonomous System",
+      "Area of Research": "Ml Framework And Development",
+      "Faculty": "Dr. Ruhul Amin",
+      "Group Members": [
+         "GARV  BAJAJ: 231010217",
+         "CHETANKUMAR S MAJJAGI  : 231000017",
+         "DARSHAN  KOCHAR: 231000018",
+         "VANSH GOEL  : 231000057"
+      ],
+      "Category": "AI/ML"
+   },
+   "37": {
+      "title of project": "Effective data preprocessing techniques and their impact on ML models(TENTATIVE)",
+      "Area of Research": "Data preprocessing",
+      "Faculty": "Dr. Sachida Nand Mishra",
+      "Group Members": [],
+      "Category": "other"
+   },
+   "38": {
+      "title of project": "not yet decided",
+      "Area of Research": "ML",
+      "Faculty": "Dr. Santosh Kumar",
+      "Group Members": [
+         "SHIWANI  BANJARE: 231020448",
+         "TANGI PREETHI DEVI  : 231010251",
+         "AKYANA SRAVYA  : 231010206"
+      ],
+      "Category": "AI/ML"
+   },
+   "39": {
+      "title of project": "Document/pdf/video authentication,summary,,quiz ,and shorts notes",
+      "Area of Research": "Web development",
+      "Faculty": "Dr. Santosh Kumar",
+      "Group Members": [
+         "ADITYA  SINGH: 231000004",
+         "ANUJ SINGH  : 231000011",
+         "PRANJAL  PATHAK: 231000042",
+         "PARIDHI  SHARMA: 231000039"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "41": {
+      "title of project": "Develop an application that analyzes patient\u00e2\u20ac\u2122s cough audio to predict the type of cough and precautionary measures based on machine\u00c2 learning\u00c2 models.",
+      "Area of Research": "Machine Learning, Signal Preprocessing, Healthcare",
+      "Faculty": "Dr. Santosh Kumar",
+      "Group Members": [
+         "ANKIT KUMAR SINGH  : 231000008",
+         "BHUVESH KUMAR KODOPI: 231000015",
+         "PATIL ANUJ AJAY  : 231000041",
+         "SATYA PRADHAN  : 231000049"
+      ],
+      "Category": "AI/ML"
+   },
+   "42": {
+      "title of project": "Leveraging AI for Translating Indigenous Languages: Developing a Gondi-English Bidirectional Translator",
+      "Area of Research": "Natural Language Processing (NLP), Machine Translation, Indigenous Language P reservation, AI for Social Impact ,Cultural Heritage and Language Revitalization",
+      "Faculty": "Dr. Santosh Kumar",
+      "Group Members": [
+         "ANUSHKA  EKKA: 231020412",
+         "DIVYANSH KUMAR SINGH CHAUHAN  : 231000020",
+         "SHREYAS  KESHARI: 231000051",
+         "ABHIJEET  MOHAPATRA: 231010202"
+      ],
+      "Category": "AI/ML"
+   },
+   "43": {
+      "title of project": "AI Powered Gadget suggesting website",
+      "Area of Research": "Artificial Intelligence",
+      "Faculty": "Dr. Satyanarayana vollala",
+      "Group Members": [
+         "ANSHUL PRATAP LAKRA: 231000009",
+         "PARTH  PATEL: 231000040",
+         "SOUMYA  DUBEY: 231010248"
+      ],
+      "Category": "AI/ML"
+   },
+   "44": {
+      "title of project": "GRAPHING SOFTWARE",
+      "Area of Research": "DATA STRUCTURES , MATHEMATICS",
+      "Faculty": "Dr. Satyanarayana vollala",
+      "Group Members": [
+         "REDDI VISHNU SIVA SATYA SUJITH  : 231000047"
+      ],
+      "Category": "other"
+   },
+   "45": {
+      "title of project": "MindEase: Mental Health Prediction and Enhancement",
+      "Area of Research": "Machine Learning, Web Development",
+      "Faculty": "Dr. Shashi Tiwari",
+      "Group Members": [
+         "ANISH KUMAR  : 231010209",
+         "NITISH  DUBEY: 231000038",
+         "HRITIK KUMAR ROUTIA: 231000023",
+         "KARMENDRA DEV NETAM: 231010220"
+      ],
+      "Category": "AI/ML"
+   },
+   "46": {
+      "title of project": "ML Model",
+      "Area of Research": "AIML",
+      "Faculty": "Dr. Shashi Tiwari",
+      "Group Members": [
+         "ARNAV  PANDEY: 231020413",
+         "AWATANSH  SINGH: 231020417",
+         "HARSHIT  RAJORIYA: 231020424"
+      ],
+      "Category": "AI/ML"
+   },
+   "48": {
+      "title of project": "AI Voice Assistant",
+      "Area of Research": "Artificial Intelligence",
+      "Faculty": "Dr. Srinivasa KG",
+      "Group Members": [
+         "ADYA  PANDEY: 231020407",
+         "KUMARI TANUSHREE  : 231010224"
+      ],
+      "Category": "AI/ML"
+   },
+   "49": {
+      "title of project": "Notes and quiz generator using lecture audio",
+      "Area of Research": "Artificial Intelligence and Machine Learning",
+      "Faculty": "Dr. Vijaya J",
+      "Group Members": [
+         "LAKSHYA GARG  : 231000033",
+         "ROHIT SINGH RAGHUVANSHI  : 231020440",
+         "MOHAMMED  ADEEB: 231010229",
+         "RAJ  KUMAR: 231000045"
+      ],
+      "Category": "AI/ML"
+   },
+   "50": {
+      "title of project": "Effects and Comparison of different Data pre-processing techniques and ML for Brain tumors detection",
+      "Area of Research": "This research explores about different Data pre- processing techniques and ML and enhance the performace of the of the brain tumor detection model to get more accurate results",
+      "Faculty": "Dr. Vijaya J",
+      "Group Members": [
+         "BANDI SAI VIKAS  : 231020419",
+         "J JAYA SURYA  : 231000025",
+         "KALIPINDI NITHEESH KUMAR  : 231000026",
+         "SHRIYA  BANOTH: 231000052"
+      ],
+      "Category": "AI/ML"
+   },
+   "51": {
+      "title of project": "EV Charging Station Finder and Slot Booking",
+      "Area of Research": "Artificial Intelligence",
+      "Faculty": "Dr. Vijaya J",
+      "Group Members": [
+         "KESHAVEE  BISEN: 231010222",
+         "LUCKY  BANJARE: 231000034",
+         "ARYAN BRAMHE  : 231000014",
+         "ARVIND KUMAR NAG: 231020414"
+      ],
+      "Category": "AI/ML"
+   },
+   "52": {
+      "title of project": "Human Activity Recognition",
+      "Area of Research": "AIML",
+      "Faculty": "Dr. Vijaya J",
+      "Group Members": [
+         "NENAVATHU PRANAY SAI NAIK: 231010231",
+         "GUDIPUDI SASANKA ABHINAV  : 231020423",
+         "ALLA ABHIRAM  : 231020409",
+         "BYPUNENI CHAITANYA KRISHNA  : 231020420"
+      ],
+      "Category": "AI/ML"
+   },
+   "53": {
+      "title of project": "Car rental system",
+      "Area of Research": "Web development",
+      "Faculty": "Dr. Vinay Kumar",
+      "Group Members": [
+         "SHUBHANG  NANDE: 231020450",
+         "VIVAAN PRADEEP BAGGA: 231010259",
+         "ABHI  RANJAN: 231000003",
+         "UTKARSH  RAI: 231010257"
+      ],
+      "Category": "Web/App Dev"
+   },
+   "54": {
+      "title of project": "TBD",
+      "Area of Research": "TBD",
+      "Faculty": "Mr. Kumar Gaurav Atram",
+      "Group Members": [
+         "ASHRITHA  GUNDU: 231020415",
+         "DEVASMITA  MAJHI: 231020421",
+         "KHUSHBOO  PAINKRA: 231020428",
+         "VARSHA  DHRUW: 231020458"
+      ],
+      "Category": "other"
+   },
+   "56": {
+      "title of project": "Second Hand Car Price Predictor",
+      "Area of Research": "Machine Learning",
+      "Faculty": "Mr. Kumar Gaurav Atram",
+      "Group Members": [
+         "ABHINAV  NIRAPURE: 231020402",
+         "SANJEEV  JATWAR: 231020443",
+         "SUDEEP  NISHAD: 231020452",
+         "YUVRAJ BHATKARIYA  : 231020460"
+      ],
+      "Category": "AI/ML"
+   },
+   "57": {
+      "title of project": "Chatbot based song recommender system",
+      "Area of Research": "Machine Learning and Artificial Intelligence",
+      "Faculty": "Mr. Kumar Gaurav Atram",
+      "Group Members": [
+         "MUKUL  : 231020432",
+         "PIYUSH BADHAN  : 231020436",
+         "JAGDISH  MADKAMI: 231020426"
+      ],
+      "Category": "AI/ML"
+   }
+}

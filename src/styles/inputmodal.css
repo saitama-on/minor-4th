@@ -1,0 +1,153 @@
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.custom-modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 60%;
+    height:90%;
+    min-height: fit-content;
+    position: relative;
+    
+}
+
+.custom-modal-header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ 
+   
+    
+}
+.custom-modal > .custom-modal-body{
+    min-height: fit-content;
+}
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.custom-modal-body > .inside-modal-div {
+   
+    display: flex;
+    height:30px;
+    min-height: fit-content;
+    flex-direction: column;
+}
+
+.inside-modal-div input {
+
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.upload-box {
+    border: 2px dashed #007bff;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    height:100px;
+}
+
+.file-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.remove-file {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.submit-btn {
+    width: 96%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    bottom:20px;
+    position:absolute;
+}
+
+.submit-btn:hover{
+   background:rgb(1, 76, 156);
+}
+
+
+/* Group Members */
+
+.group-member-input {
+    display: flex;
+    gap: 5px;
+    height: 5px;
+    align-items: center;
+}
+
+.add-member-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.group-members-list {
+    margin-top: 10px;
+    display: flex;
+    /* flex-wrap: nowrap;  Prevents wrapping to a new line */
+    gap: 1px;
+    overflow-x: auto;  /* Enables horizontal scrolling if too many members */
+    white-space: nowrap; /* Prevents breaking into multiple lines */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.member-tag {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.member-tag button {
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.error {
+    border: 2px solid red !important;
+    background: #ffe6e6;
+}

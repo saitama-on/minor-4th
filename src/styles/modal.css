@@ -1,0 +1,234 @@
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+}
+
+.custom-modal {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+  position: relative;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.custom-modal-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-radius: 12px 12px 0 0;
+  z-index: 10;
+}
+
+.custom-modal-header > .close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+  transform: scale(1.1);
+}
+
+.custom-modal-body {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.inside-modal-div {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 1.5;
+  color: #333;
+  font-size: 1rem;
+}
+
+.inside-modal-div:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.span-text {
+  font-weight: 600;
+  color: #316dcc;
+  margin-right: 0.5rem;
+  display: inline-block;
+  min-width: 150px;
+}
+
+.member-link {
+  color: #316dcc;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin: 0 2px;
+}
+
+.member-link:hover {
+  background-color: rgba(49, 109, 204, 0.1);
+  text-decoration: underline;
+}
+
+/* File upload section */
+.custom-modal-body input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
+}
+
+.custom-modal-body input[type="file"]:hover {
+  border-color: #316dcc;
+  background-color: #f0f7ff;
+}
+
+.custom-modal-body button {
+  background-color: #316dcc;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+  margin: 1rem 0;
+}
+
+.custom-modal-body button:hover {
+  background-color: #2857a4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(49, 109, 204, 0.2);
+}
+
+.custom-modal-body a {
+  color: #316dcc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.custom-modal-body a:hover {
+  background-color: rgba(49, 109, 204, 0.1);
+  text-decoration: underline;
+}
+
+.custom-modal-body p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .custom-modal {
+    width: 95%;
+    max-width: none;
+  }
+  
+  .span-text {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  
+  .custom-modal-body {
+    padding: 0 1rem 1rem 1rem;
+  }
+}
+
+.members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.upload-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.upload-section p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Loading state */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Add a subtle hover effect to the entire modal */
+.custom-modal:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Improve scrollbar appearance */
+.custom-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.custom-modal::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.custom-modal::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}

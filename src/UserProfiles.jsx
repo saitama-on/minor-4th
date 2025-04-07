@@ -1,0 +1,163 @@
+import React, { useState, useEffect } from 'react';
+import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
+import './styles/UserProfiles.css';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ThreeDot } from 'react-loading-indicators';
+
+function UserProfiles() {
+    const [userProfile, setUserProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const { username } = useParams();
+    const db = getFirestore();
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            if (!username) {
+                navigate('/');
+                return;
+            }
+
+            try {
+                const decodedUsername = decodeURIComponent(username).trim();
+                const projectsQuery = query(collection(db, 'public_projects'));
+                const projectsSnapshot = await getDocs(projectsQuery);
+                const userProjects = [];
+                
+                projectsSnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const groupMembers = data.Group_Members || [];
+                    
+                    // Check if the user is a member of this project
+                    if (groupMembers.some(member => 
+                        member.toLowerCase().trim() === decodeURIComponent(username).toLowerCase().trim()
+                    )) {
+                        userProjects.push({
+                            id: doc.id,
+                            ...data
+                        });
+                    }
+                });
+
+                // Sort projects by creation date if available
+                const sortedProjects = userProjects.sort((a, b) => {
+                    const dateA = a.created_at?.toDate() || new Date(0);
+                    const dateB = b.created_at?.toDate() || new Date(0);
+                    return dateB - dateA;
+                });
+
+                if (userProjects.length > 0) {
+                    setUserProfile({
+                        email: decodedUsername,
+                        projects: sortedProjects
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching profile:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUserProfile();
+    }, [username, navigate, db]);
+
+    if (loading) {
+        return (
+            <div className="loading-container">
+                <ThreeDot color="#316dcc" size="medium" text="" textColor="" />
+            </div>
+        );
+    }
+
+    if (!userProfile) {
+        return (
+            <div className="profiles-container">
+                <nav className="navbar">
+                    <h1>User Profile</h1>
+                    <div className="nav-buttons">
+                        <button onClick={() => navigate('/')} className="nav-button">
+                            Dashboard
+                        </button>
+                    </div>
+                </nav>
+                <div className="no-profile">
+                    <h2>No profile found for {decodeURIComponent(username)}</h2>
+                    <button onClick={() => navigate('/')} className="nav-button">
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="profiles-container">
+            <nav className="navbar">
+                
+                <div className="nav-buttons">
+                    <button onClick={() => navigate('/')} className="nav-button">
+                        Dashboard
+                    </button>
+                </div>
+            </nav>
+            
+            <div className="profile-content">
+                <div className="profile-header-main">
+                    <div className="profile-avatar-large">
+                        {userProfile.email[0].toUpperCase()}
+                    </div>
+                    <div className="profile-info">
+                        <h2>{userProfile.email}</h2>
+                        <p>{userProfile.projects.length} Project{userProfile.projects.length !== 1 ? 's' : ''}</p>
+                    </div>
+                </div>
+
+                <div className="projects-section">
+                    <h3>Projects</h3>
+                    <div className="projects-grid">
+                        {userProfile.projects.map((project, index) => (
+                            <div key={index} className="project-card">
+                                <h4>{project.title_of_project}</h4>
+                                <p><strong>Research Area:</strong> {project.Area_of_Research}</p>
+                                <p><strong>Faculty:</strong> {project.Faculty}</p>
+                                <p><strong>Category:</strong> {project.Category || 'N/A'}</p>
+                                <p><strong>Year Of Submission:</strong> {project.yearOfSubmission || 'N/A'}</p>
+                                <p><strong>Team Members:</strong></p>
+                                <div className="team-members">
+                                    {project.Group_Members.map((member, idx) => (
+                                        <span key={idx}>
+                                            <span 
+                                                className={`member-link ${member === userProfile.email ? 'current-user' : ''}`}
+                                                onClick={() => {
+                                                    if (member !== userProfile.email) {
+                                                        navigate(`/profiles/${encodeURIComponent(member)}`);
+                                                    }
+                                                }}
+                                            >
+                                                {member}
+                                            </span>
+                                            {idx < project.Group_Members.length - 1 ? ', ' : ''}
+                                        </span>
+                                    ))}
+                                </div>
+                                {project.Report && (
+                                    <a 
+                                        href={project.Report} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="view-report"
+                                    >
+                                        View Report
+                                    </a>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default UserProfiles; 
