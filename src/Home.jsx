@@ -86,6 +86,8 @@ const Home = () => {
     setShowModal(true);
   };
 
+  
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }

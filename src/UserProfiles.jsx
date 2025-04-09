@@ -32,7 +32,7 @@ function UserProfiles() {
                     if (groupMembers.some(member => 
                         member.toLowerCase().trim() === decodeURIComponent(username).toLowerCase().trim()
                     )) {
-                        userProjects.push({
+                        userProjects.push({ 
                             id: doc.id,
                             ...data
                         });
