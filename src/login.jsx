@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css"; // Optional: Add your own styles
 import IceBear from "./iceBear1.jpg";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { useAuth } from './App';
@@ -26,21 +26,17 @@ const Login = () => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-      console.log('guck')
       const user = result.user;
       
-      // Check/create user document in Firestore
-      const userRef = doc(db, 'users', user.uid);
-      const userDoc = await getDoc(userRef);
-      
-      if (!userDoc.exists()) {
-        await setDoc(userRef, {
-          email: user.email,
-          displayName: user.displayName,
-          projects: {}
-        });
+      // Check if email ends with @iiitnr.edu.in
+      if (!user.email.endsWith('@iiitnr.edu.in')) {
+        // Sign out the user if email is not from IIITNR
+        await signOut(auth);
+        setError('Only IIITNR email addresses (@iiitnr.edu.in) are allowed to login');
+        return;
       }
 
+      // If email is valid, proceed with login
       navigate('/');
     } catch (error) {
       console.error('Login error:', error);
@@ -52,6 +48,11 @@ const Login = () => {
     e.preventDefault();
     if (!email || !password) {
       setError("Please fill in all fields.");
+      return;
+    }
+
+    if(!email.includes('@iiitnr.edu.in')){
+      setError("Please use your IIITNR email address.");
       return;
     }
 
@@ -110,6 +111,7 @@ const Login = () => {
           <button onClick={handleGoogleLogin} className="google-button">
             Login with Google
           </button>
+          {error && <div className="error-message">{error}</div>}
           <p>
             Don't have an account? <a href="/signup">Sign up</a>
           </p>

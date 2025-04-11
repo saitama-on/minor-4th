@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, getDocs , where} from 'firebase/firestore';
 import './styles/UserProfiles.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ThreeDot } from 'react-loading-indicators';
@@ -21,6 +21,9 @@ function UserProfiles() {
             try {
                 const decodedUsername = decodeURIComponent(username).trim();
                 const projectsQuery = query(collection(db, 'public_projects'));
+                const curr_user = query(collection(db , 'students') , where('name' , '==' , decodedUsername))
+                const curr_user_docs = await getDocs(curr_user);
+                console.log(curr_user_docs)
                 const projectsSnapshot = await getDocs(projectsQuery);
                 const userProjects = [];
                 
@@ -38,6 +41,7 @@ function UserProfiles() {
                         });
                     }
                 });
+                console.log(userProjects);
 
                 // Sort projects by creation date if available
                 const sortedProjects = userProjects.sort((a, b) => {
