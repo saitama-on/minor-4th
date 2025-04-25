@@ -26,7 +26,7 @@ const AddProject = () => {
   const storage = getStorage();
   const db = getFirestore();
 
-  const [groupMembers, setGroupMembers] = useState([auth.currentUser.displayName]);
+  const [groupMembers, setGroupMembers] = useState([]);
 
   useEffect(() => {
     // Check if user is authenticated
@@ -99,7 +99,7 @@ const AddProject = () => {
   };
 
   const handleMemberChange = (index, value) => {
-    if (index === 0) return;
+    // if (index === 0) return;
     const updatedMembers = [...groupMembers];
     updatedMembers[index] = value;
     setGroupMembers(updatedMembers);
@@ -147,10 +147,10 @@ const AddProject = () => {
 
     try {
       // 1. Upload file to Firebase Storage
-      const fileRef = ref(storage, `project-files/${auth.currentUser.uid}/${title}/${file.name}`);
-      await uploadBytes(fileRef, file);
-      const fileUrl = await getDownloadURL(fileRef);
-      console.log(year)
+      // const fileRef = ref(storage, `project-files/${auth.currentUser.uid}/${title}/${file.name}`);
+      // await uploadBytes(fileRef, file);
+      // const fileUrl = await getDownloadURL(fileRef);
+      // console.log(year)
 
       // 2. Create project document in Firestore
       const projectData = {
@@ -159,8 +159,8 @@ const AddProject = () => {
         faculty: faculty,
         category: category,
         groupMembers: groupMembers.filter(member => member.trim()),
-        fileUrl: fileUrl,
-        fileName: file.name,
+        // fileUrl: fileUrl,
+        // fileName: file.name,
         createdBy: auth.currentUser.uid,
         yearOfSubmisson:year,
         createdAt: new Date(),
@@ -191,7 +191,7 @@ const AddProject = () => {
         Group_Members: groupMembers,
         Category: category,
         yearOfSubmission:year,
-        Report: fileUrl,
+        // Report: fileUrl,
         created_at: new Date(),
         created_by: auth.currentUser.email
       });
@@ -274,10 +274,10 @@ const AddProject = () => {
         <div className="form-group">
           <label>Group Members*</label>
           <div className="selected-members">
-            <div className="member-item">
-              <span>{groupMembers[0]}</span>
-              <span className="member-role">(You)</span>
-            </div>
+            {/* <div className="member-item"> */}
+              {/* <span>{groupMembers[0]}</span> */}
+              {/* <span className="member-role">(You)</span> */}
+            {/* </div> */}
             {selectedStudents.map((student, index) => (
               <div key={index} className="member-item">
                 <span>{student}</span>
@@ -334,7 +334,7 @@ const AddProject = () => {
             type="file"
             accept=".pdf"
             onChange={handleFileChange}
-            required
+          
           />
         </div>
 
