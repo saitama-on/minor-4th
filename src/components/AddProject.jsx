@@ -73,7 +73,7 @@ const AddProject = () => {
 
   useEffect(()=>{
     loadStudents();
-  })
+  },[])
 
   useEffect(() => {
     if (searchTerm) {

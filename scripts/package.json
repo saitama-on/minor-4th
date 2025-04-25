@@ -1,0 +1,11 @@
+{
+  "name": "convert-to-csv",
+  "version": "1.0.0",
+  "description": "Convert student data to CSV format",
+  "main": "convertToCSV.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^21.0.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+} 
