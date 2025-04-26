@@ -24,7 +24,7 @@ const Home = () => {
 
       try {
         // Fetch all projects from public_projects collection
-        const querySnapshot = await getDocs(collection(db, 'public_projects'));
+        const querySnapshot = await getDocs(collection(db, 'projects'));
         const allProjects = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -34,7 +34,7 @@ const Home = () => {
         const currentUserName = auth.currentUser.displayName.toLowerCase();
         const currentUserEmail = auth.currentUser.email.toLowerCase();
         const userProjects = allProjects.filter(project => {
-          const groupMembers = project.Group_Members || [];
+          const groupMembers = project.groupMembers || [];
           return groupMembers.some(member => {
             const memberLower = member.toLowerCase();
             return memberLower.includes(currentUserName) || 
@@ -142,11 +142,11 @@ const Home = () => {
                 onClick={() => handleProjectClick(project)}
                 style={{ cursor: 'pointer' }}
               >
-                <h3>{project.title_of_project}</h3>
-                <p><strong>Research Area:</strong> {project.Area_of_Research}</p>
-                <p><strong>Faculty:</strong> {project.Faculty}</p>
-                <p><strong>Category:</strong> {project.Category}</p>
-                <p><strong>Group Members:</strong> {project.Group_Members.join(',')}
+                <h3>{project.title}</h3>
+                <p><strong>Research Area:</strong> {project.researchArea}</p>
+                <p><strong>Faculty:</strong> {project.faculty}</p>
+                <p><strong>Category:</strong> {project.category}</p>
+                <p><strong>Group Members:</strong> {project.groupMembers.join(' ,')}
                 </p>
                 {project.Report!="" && (
                   <a 

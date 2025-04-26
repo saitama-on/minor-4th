@@ -3,7 +3,7 @@ import '../styles/searchBar.css'
 import { useState, useEffect } from 'react'
 import InfoModal from "./modal.jsx"
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs , setDoc , updateDoc , query} from 'firebase/firestore';
+import { getFirestore, collection, getDocs ,doc, setDoc , updateDoc , query} from 'firebase/firestore';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { getDownloadURL  ,ref , getStorage } from 'firebase/storage';
@@ -41,16 +41,22 @@ export default function SearchBar() {
   
     const fetchData = async () => {
       try {
-        const fac_url = await getDownloadURL(ref(storage, 'student/faculty.json'));
-        const fac_res = await fetch(`https://cors-anywhere-wbl8.onrender.com/${fac_url}`);
-        const fac_data = await fac_res.json();
-        setFacultyJson(fac_data);
+        
+
+        const facultyQuery = await getDocs(collection(db , 'faculty'));
+        const facultyList = facultyQuery.docs.map((doc)=>{
+          setFacultyArray((prev)=>{
+            return [...prev , doc.data().name]
+          })
+        })
+        console.log(facultyArray)
         // Fetch faculty data (keeping this from storage for now)
-        const querySnapshot = await getDocs(collection(db, 'public_projects'));
+        const querySnapshot = await getDocs(collection(db, '/projects'));
         const projectsData = {};
         querySnapshot.forEach((doc) => {
           projectsData[doc.id] = doc.data();
         });
+        console.log(projectsData)
         setJsonData(projectsData);
         setLoading(false);
         // console.log(projectsData);
@@ -69,25 +75,25 @@ export default function SearchBar() {
 
     if (searchQuery) {
       filteredData = filteredData.filter((item) => {
-        return item['title_of_project']?.toLowerCase().includes(searchQuery.toLowerCase());
+        return item['title']?.toLowerCase().includes(searchQuery.toLowerCase());
       });
     }
 
     if (category !== 'ALL') {
       filteredData = filteredData.filter((item) => 
-        item['Category']?.toLowerCase().includes(category.toLowerCase())
+        item['category']?.toLowerCase().includes(category.toLowerCase())
       );
     }
 
     if (faculty !== 'ALL') {
       filteredData = filteredData.filter((item) => 
-        item['Faculty']?.toLowerCase().includes(faculty.toLowerCase())
+        item['faculty']?.toLowerCase().includes(faculty.toLowerCase())
       );
     }
 
     setFilteredData(filteredData);
     // console.log(filteredData);
-  }, [searchQuery, category, faculty, jsonData, facultyJson]);
+  }, [searchQuery, category, faculty, jsonData , db]);
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -104,10 +110,7 @@ export default function SearchBar() {
     setCategory(e.target.value)
   }
 
-  const handleFaculty = (e) => {
-    setFaculty(e.target.value)
-  }
-
+  
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -158,11 +161,10 @@ export default function SearchBar() {
           <option value="Other">Other</option>
         </select>
 
-        <select value={faculty} onChange={handleFaculty} className="filter-select">
-          <option value="ALL">All Faculty</option>
-          {Object.keys(facultyJson).map((fac, index) => (
-            <option key={index} value={fac}>{fac}</option>
-          ))}
+        <select value={faculty} onChange={(e)=>setFaculty(e.target.value)} className="filter-select">
+          {facultyArray.map((key ,item)=>{
+            return <option value={key} key={item}>{key}</option>
+          })}
         </select>
 
         <button onClick={navigateToAddProject} className="add-project-btn">
@@ -178,10 +180,12 @@ export default function SearchBar() {
         ) : 
           filteredData.map((item, index) => (
             <div key={index} className="project-card" onClick={() => handleClick(item)}>
-              <h3>{item['title_of_project']}</h3>
-              <p><strong>Research Area:</strong> {item['Area_of_Research']}</p>
-              <p><strong>Faculty:</strong> {item['Faculty']}</p>
-              <p><strong>Category:</strong> {item['Category']}</p>
+              <h3><strong>{item['title']}</strong></h3>
+              <p>Research Area: <strong>{item['researchArea']}</strong></p>
+              <p>Faculty: <strong>{item['faculty']}</strong></p>
+              <p>Category: <strong>{item['category']}</strong></p>
+              <p>Year: <strong>{item['yearOfSubmisson']}</strong></p>
+              <p>Group Members:<strong>{item['groupMembers'].map(stu => <span>{stu}, </span>)}</strong></p>
             </div>
           ))
         }

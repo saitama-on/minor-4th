@@ -1,0 +1,9 @@
+yash {
+
+    1.Make upload fileUrl functional by verifying name of the authenticated user before
+    rendering of upload section;
+    2.Add faculty wise Project section functional
+    3. optimise the number of reads in all components , rn too many reads happening.
+    4. approval of uploaded file of a project by assigned faculty using email verification.
+
+}

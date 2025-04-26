@@ -72,9 +72,9 @@ const StudentManagement = () => {
         if (row.length === headers.length && row[0]) {
           const studentData = {
             name: row[headers.findIndex(h => h.toLowerCase() === 'name')],
-            email: row[headers.findIndex(h => h.toLowerCase() === 'email')],
-            created_at: new Date(),
-            created_by: auth.currentUser.email
+            email: row[headers.findIndex(h => h.toLowerCase() === 'email')]
+            // created_at: new Date(),
+            // created_by: auth.currentUser.email
           };
 
           const existingQuery = query(

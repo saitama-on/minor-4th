@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, query, getDocs , where} from 'firebase/firestore';
-import './styles/UserProfiles.css';
+import { getFirestore, collection, query, getDocs , where , doc , updateDoc} from 'firebase/firestore';
+import '../styles/UserProfiles.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ThreeDot } from 'react-loading-indicators';
+
+
+// function toTitleCase(str){
+//     if(!str){
+//         return;
+//     }
+//     let final_str = str.toLowerCase()
+//     .split(' ')
+//     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+//     .join(' ');
+//     // console.log(final_str)
+//     return final_str;
+// }
+
 
 function UserProfiles() {
     const [userProfile, setUserProfile] = useState(null);
@@ -10,6 +24,35 @@ function UserProfiles() {
     const navigate = useNavigate();
     const { username } = useParams();
     const db = getFirestore();
+    // useEffect(()=>{
+    //     const updateNames = async ()=>{
+
+    //         try {
+    //             const projRef = collection(db , 'public_projects');
+    //             const querySnapshot = await getDocs(projRef);
+    //             const updatePromise = [];
+
+    //             querySnapshot.forEach((doc)=>{
+    //                 const projdocref = doc.ref;
+    //                 const projdata = doc.data();
+
+    //                 const ognames = projdata.Group_Members;
+    //                 const newnames = ognames.map(item => toTitleCase(item));
+    //                 updatePromise.push(
+    //                     updateDoc(projdocref , {
+    //                         Group_Members: newnames
+    //                     })
+    //                 )
+    //             })
+    //             console.log(projRef);
+    //         }
+    //         catch(err){
+    //             console.log(err);
+    //         }
+    //     }
+    //     updateNames();
+    // },[])
+    
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -20,16 +63,23 @@ function UserProfiles() {
 
             try {
                 const decodedUsername = decodeURIComponent(username).trim();
-                const projectsQuery = query(collection(db, 'public_projects'));
+                // const public_projectsQuery = query(collection(db, 'public_projects'));
+                const projectsQuery  = query(collection(db , 'projects'))
+
                 const curr_user = query(collection(db , 'students') , where('name' , '==' , decodedUsername))
                 const curr_user_docs = await getDocs(curr_user);
                 console.log(curr_user_docs)
+
+                curr_user_docs.forEach((doc)=>{
+                    console.log(doc.data())
+                })
                 const projectsSnapshot = await getDocs(projectsQuery);
+                // const publicProjectsSnapshot = await getDocs(public_projectsQuery);
                 const userProjects = [];
                 
                 projectsSnapshot.forEach((doc) => {
                     const data = doc.data();
-                    const groupMembers = data.Group_Members || [];
+                    const groupMembers = data.groupMembers || [];
                     
                     // Check if the user is a member of this project
                     if (groupMembers.some(member => 
@@ -41,6 +91,20 @@ function UserProfiles() {
                         });
                     }
                 });
+                // publicProjectsSnapshot.forEach((doc) => {
+                //     const data = doc.data();
+                //     const groupMembers = data.Group_Members || [];
+                    
+                //     // Check if the user is a member of this project
+                //     if (groupMembers.some(member => 
+                //         member.toLowerCase().trim() === decodeURIComponent(username).toLowerCase().trim()
+                //     )) {
+                //         userProjects.push({ 
+                //             id: doc.id,
+                //             ...data
+                //         });
+                //     }
+                // });
                 console.log(userProjects);
 
                 // Sort projects by creation date if available
@@ -65,6 +129,10 @@ function UserProfiles() {
 
         fetchUserProfile();
     }, [username, navigate, db]);
+
+    const handleProjClick = (e) =>{
+        console.log(e.target.value)
+    }
 
     if (loading) {
         return (
@@ -121,15 +189,15 @@ function UserProfiles() {
                     <h3>Projects</h3>
                     <div className="projects-grid">
                         {userProfile.projects.map((project, index) => (
-                            <div key={index} className="project-card">
-                                <h4>{project.title_of_project}</h4>
-                                <p><strong>Research Area:</strong> {project.Area_of_Research}</p>
-                                <p><strong>Faculty:</strong> {project.Faculty}</p>
-                                <p><strong>Category:</strong> {project.Category || 'N/A'}</p>
-                                <p><strong>Year Of Submission:</strong> {project.yearOfSubmission || 'N/A'}</p>
+                            <div key={index} value={project} className="project-card" onClick={(e) =>handleProjClick(e)}>
+                                <h4>{project.title}</h4>
+                                <p><strong>Research Area:</strong> {project.researchArea}</p>
+                                <p><strong>Faculty:</strong> {project.faculty}</p>
+                                <p><strong>Category:</strong> {project.category || 'N/A'}</p>
+                                <p><strong>Year Of Submission:</strong> {project.yearOfSubmisson || 'N/A'}</p>
                                 <p><strong>Team Members:</strong></p>
                                 <div className="team-members">
-                                    {project.Group_Members.map((member, idx) => (
+                                    {project.groupMembers.map((member, idx) => (
                                         <span key={idx}>
                                             <span 
                                                 className={`member-link ${member === userProfile.email ? 'current-user' : ''}`}
@@ -141,7 +209,7 @@ function UserProfiles() {
                                             >
                                                 {member}
                                             </span>
-                                            {idx < project.Group_Members.length - 1 ? ', ' : ''}
+                                            {idx < project.groupMembers.length - 1 ? ', ' : ''}
                                         </span>
                                     ))}
                                 </div>

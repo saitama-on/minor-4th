@@ -37,13 +37,20 @@ const AddProject = () => {
 
     const fetchFacultyData = async () => {
       try {
-        const facultyUrl = await getDownloadURL(ref(storage, 'student/faculty.json'));
-        const response = await fetch(`https://cors-anywhere-wbl8.onrender.com/${facultyUrl}`);
-        const data = await response.json();
-        setFacultyArray(Object.keys(data));
+        // const facultyUrl = await getDownloadURL(ref(storage, 'student/faculty.json'));
+        // const response = await fetch(`https://cors-anywhere-wbl8.onrender.com/${facultyUrl}`);
+        // const data = await response.json();
+        // setFacultyArray(Object.keys(data));
 
-        const studentquery = await getDocs(collection(db , 'students'));
-        console.log(studentquery.docs)
+        const facultyquery = await getDocs(collection(db , 'faculty'));
+        const facultyList = facultyquery.docs.map((doc)=>{
+          setFacultyArray((prev)=> {
+            return [...prev , doc.data().name]
+          });
+        })
+        console.log(faculty)
+        // setFacultyArray(facultyList);
+        // console.log(studentquery.docs)
 
         
       } catch (error) {
@@ -73,7 +80,7 @@ const AddProject = () => {
 
   useEffect(()=>{
     loadStudents();
-  },[])
+  },[db])
 
   useEffect(() => {
     if (searchTerm) {
@@ -184,17 +191,17 @@ const AddProject = () => {
       }, { merge: true });
 
       // 4. Add to public projects collection
-      await addDoc(collection(db, 'public_projects'), {
-        title_of_project: title,
-        Area_of_Research: researchArea,
-        Faculty: faculty,
-        Group_Members: groupMembers,
-        Category: category,
-        yearOfSubmission:year,
-        // Report: fileUrl,
-        created_at: new Date(),
-        created_by: auth.currentUser.email
-      });
+      // await addDoc(collection(db, 'public_projects'), {
+      //   title_of_project: title,
+      //   Area_of_Research: researchArea,
+      //   Faculty: faculty,
+      //   Group_Members: groupMembers,
+      //   Category: category,
+      //   yearOfSubmission:year,
+      //   // Report: fileUrl,
+      //   created_at: new Date(),
+      //   created_by: auth.currentUser.email
+      // });
 
       navigate('/search');
     } catch (error) {
@@ -247,7 +254,7 @@ const AddProject = () => {
           <select value={faculty} onChange={(e) => setFaculty(e.target.value)} required>
             {/* <option value="">Select Faculty</option> */}
             {facultyArray.map((fac) => (
-              <option key={fac} value={fac}>{fac}</option>
+              <option value={fac}>{fac}</option>
             ))}
           </select>
         </div>
@@ -268,6 +275,7 @@ const AddProject = () => {
             <option value="AI/ML">AI/ML</option>
             <option value="Blockchain">Blockchain</option>
             <option value="Hardware/Electronics">Hardware/Electronics</option>
+            <option value="Math/Physics">Math/Physics</option>
           </select>
         </div>
 

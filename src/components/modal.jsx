@@ -33,35 +33,35 @@ function InfoModal({ show, setShow, info }) {
   const navigate = useNavigate();
   const [showToast , setShowToast]  = useState(false);
 
-  useEffect(() => {
-    const fetchProject = async () => {
+  // useEffect(() => {
+  //   const fetchProject = async () => {
       
-      try {
-        // Search in public_projects collection
-        const projectQuery = query(
-          collection(db, 'public_projects'),
-          where('title_of_project', '==', info['title_of_project'])
-        );
+  //     try {
+  //       // Search in public_projects collection
+  //       const projectQuery = query(
+  //         collection(db, 'public_projects'),
+  //         where('title_of_project', '==', info['title_of_project'])
+  //       );
 
         
-        const querySnapshot = await getDocs(projectQuery);
-        if (!querySnapshot.empty) {
-          const doc = querySnapshot.docs[0];
+  //       const querySnapshot = await getDocs(projectQuery);
+  //       if (!querySnapshot.empty) {
+  //         const doc = querySnapshot.docs[0];
         
-          setProjectDoc(doc.data()) ;
+  //         setProjectDoc(doc.data()) ;
 
-        }
-      } catch (error) {
-        console.error('Error fetching project:', error);
-      } finally {
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching project:', error);
+  //     } finally {
         
-      }
-    };
+  //     }
+  //   };
 
-    if (info['title_of_project']) {
-      fetchProject();
-    }
-  }, []);
+  //   if (info['title_of_project']) {
+  //     fetchProject();
+  //   }
+  // }, []);
 
   const notify_err = (msg) => toast.error(msg);
   const notify_succ = (msg) => toast.success(msg);
@@ -73,6 +73,7 @@ function InfoModal({ show, setShow, info }) {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+    alert('this feature is under work!!!!!')
   };
 
   const handleMemberClick = (member, e) => {
@@ -83,62 +84,49 @@ function InfoModal({ show, setShow, info }) {
     navigate(`/profiles/${encodedUsername}`); // Navigate to member's profile
   };
 
-  const uploadData = async () => {
-    try {
-      // Create a safe file path using project title
-      let booli =0;
-      for (let i=0 ; i<info['Group_Members'].length ; i++){
-        if(info['Group_Members'][i] === auth.currentUser.DisplayName){
-          booli =1;
-          break;
-        }
-      }
+  // const uploadData = async () => {
+  //   try {
+  //     // Create a safe file path using project title
+  //     let booli =0;
+  //     for (let i=0 ; i<info['Group_Members'].length ; i++){
+  //       if(info['Group_Members'][i] === auth.currentUser.DisplayName){
+  //         booli =1;
+  //         break;
+  //       }
+  //     }
 
-      if(!booli){
-        notify_err("You are not part of this Project");
-        return;
-      }
+  //     if(!booli){
+  //       notify_err("You are not part of this Project");
+  //       return;
+  //     }
 
 
       
-      const safeProjectTitle = info['title_of_project'].replace(/[^a-zA-Z0-9]/g, '_');
-      const storageRef = ref(storage, `project-files/${auth.currentUser.uid}/${safeProjectTitle}/${file.name}`);
+  //     const safeProjectTitle = info['title_of_project'].replace(/[^a-zA-Z0-9]/g, '_');
+  //     const storageRef = ref(storage, `project-files/${auth.currentUser.uid}/${safeProjectTitle}/${file.name}`);
       
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
+  //     await uploadBytes(storageRef, file);
+  //     const url = await getDownloadURL(storageRef);
       
-      // Update or create document in public_projects collection
-      const projectData = {
-        Report: url,
-        updated_at: new Date(),
-        updated_by: auth.currentUser.email
-      };
+  //     // Update or create document in public_projects collection
+  //     const projectData = {
+  //       Report: url,
+  //       updated_at: new Date(),
+  //       updated_by: auth.currentUser.email
+  //     };
 
-      if (projectDoc) {
-        // Update existing document
-        await updateDoc(projectDoc.ref, projectData);
-      } 
+  //     if (projectDoc) {
+  //       // Update existing document
+  //       await updateDoc(projectDoc.ref, projectData);
+  //     } 
 
-      notify_succ('Uploaded Successfully');
-    } catch (err) {
-      console.error('Error uploading:', err);
-      alert('Upload failed. Please try again.');
-    } 
-  };
+  //     notify_succ('Uploaded Successfully');
+  //   } catch (err) {
+  //     console.error('Error uploading:', err);
+  //     alert('Upload failed. Please try again.');
+  //   } 
+  // };
 
-  const handleAuth = async () => {
-    if (!file) {
-      alert('Please select a file!');
-      return;
-    }
-
-    try {
-      await uploadData();
-    } catch (error) {
-      console.error('Authentication error:', error);
-      alert('Authentication failed. Please try again.');
-    }
-  };
 
   return (
     <>
@@ -150,7 +138,7 @@ function InfoModal({ show, setShow, info }) {
             </button>
           </div>
           
-          {projectDoc===null ? (
+          {info===null ? (
             <div className="loading-container">
               <ThreeDot color="#316dcc" size="medium" text="" textColor="" />
             </div>
@@ -158,32 +146,32 @@ function InfoModal({ show, setShow, info }) {
             <div className="custom-modal-body">
               <div className="inside-modal-div">
                 <span className="span-text">Title of Project:</span>
-                {info['title_of_project']}
+                {info['title']}
               </div>
               <div className="inside-modal-div">
                 <span className="span-text">Area of Research:</span>
-                {info['Area_of_Research']}
+                {info['researchArea']}
               </div>
               <div className="inside-modal-div">
                 <span className="span-text">Faculty:</span>
-                {projectDoc.Faculty}
+                {info['faculty']}
               </div>
-              {info['Category'] && (
+              {info['category'] && (
                 <div className="inside-modal-div">
                   <span className="span-text">Category:</span>
-                  {info['Category']}
+                  {info['category']}
                 </div>
               )}
               
                 <div className="inside-modal-div">
                   <span className="span-text">Year of Submission:</span>
-                  {projectDoc.yearOfSubmission}
+                  {info['yearOfSubmisson']}
                 </div>
               
               <div className="inside-modal-div">
                 <span className="span-text">Group Members:</span>
                 <div className="members-list">
-                  {info['Group_Members'].map((member, idx) => (
+                  {info['groupMembers'].map((member, idx) => (
                     <span key={idx}>
                       <span 
                         className="member-link"
@@ -191,23 +179,23 @@ function InfoModal({ show, setShow, info }) {
                       >
                         {member}
                       </span>
-                      {idx < info['Group_Members'].length - 1 ? ', ' : ''}
+                      {idx < info['groupMembers'].length - 1 ? ', ' : ''}
                     </span>
                   ))}
                 </div>
               </div>
               
-              {projectDoc.Report !== "" ? (
+              {info.fileUrl ? (
                 <div className="inside-modal-div">
                   <span className="span-text">Report :</span>
-                  <a href={projectDoc.Report} target="_blank" rel="noopener noreferrer">View Report</a>
+                  <a href={info.fileUrl} target="_blank" rel="noopener noreferrer">View Report</a>
                 </div>
               ) : (
                 <div className="inside-modal-div upload-section">
                   <span className="span-text">Upload Report:</span>
                   <p>Is this your project? You can upload the report.</p>
                   <input type="file" onChange={handleFileChange} accept=".pdf"></input>
-                  <button onClick={handleAuth}>Upload Report</button>
+                  {/* <button onClick={handleAuth}>Upload Report</button> */}
                 </div>
               )}
             </div>

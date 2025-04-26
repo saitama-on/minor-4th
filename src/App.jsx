@@ -8,7 +8,7 @@ import Home from './Home';
 import SearchBar from './components/searchBar';
 import AddProject from './components/AddProject';
 import StudentManagement from './components/StudentManagement';
-import UserProfiles from './UserProfiles';
+import UserProfiles from './components/UserProfiles';
 
 
 
