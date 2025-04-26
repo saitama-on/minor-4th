@@ -3,6 +3,7 @@ import { getFirestore, collection, query, getDocs , where , doc , updateDoc} fro
 import '../styles/UserProfiles.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ThreeDot } from 'react-loading-indicators';
+import InfoModal from './modal.jsx'
 
 
 // function toTitleCase(str){
@@ -20,6 +21,8 @@ import { ThreeDot } from 'react-loading-indicators';
 
 function UserProfiles() {
     const [userProfile, setUserProfile] = useState(null);
+    const [show , setShow] = useState(false);
+    const [info  , setInfo] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const { username } = useParams();
@@ -63,18 +66,10 @@ function UserProfiles() {
 
             try {
                 const decodedUsername = decodeURIComponent(username).trim();
-                // const public_projectsQuery = query(collection(db, 'public_projects'));
                 const projectsQuery  = query(collection(db , 'projects'))
 
-                const curr_user = query(collection(db , 'students') , where('name' , '==' , decodedUsername))
-                const curr_user_docs = await getDocs(curr_user);
-                console.log(curr_user_docs)
-
-                curr_user_docs.forEach((doc)=>{
-                    console.log(doc.data())
-                })
+                
                 const projectsSnapshot = await getDocs(projectsQuery);
-                // const publicProjectsSnapshot = await getDocs(public_projectsQuery);
                 const userProjects = [];
                 
                 projectsSnapshot.forEach((doc) => {
@@ -91,21 +86,7 @@ function UserProfiles() {
                         });
                     }
                 });
-                // publicProjectsSnapshot.forEach((doc) => {
-                //     const data = doc.data();
-                //     const groupMembers = data.Group_Members || [];
-                    
-                //     // Check if the user is a member of this project
-                //     if (groupMembers.some(member => 
-                //         member.toLowerCase().trim() === decodeURIComponent(username).toLowerCase().trim()
-                //     )) {
-                //         userProjects.push({ 
-                //             id: doc.id,
-                //             ...data
-                //         });
-                //     }
-                // });
-                console.log(userProjects);
+
 
                 // Sort projects by creation date if available
                 const sortedProjects = userProjects.sort((a, b) => {
@@ -130,8 +111,9 @@ function UserProfiles() {
         fetchUserProfile();
     }, [username, navigate, db]);
 
-    const handleProjClick = (e) =>{
-        console.log(e.target.value)
+    const handleProjClick = (item) =>{
+        setShow(true);
+        setInfo(item);
     }
 
     if (loading) {
@@ -189,7 +171,7 @@ function UserProfiles() {
                     <h3>Projects</h3>
                     <div className="projects-grid">
                         {userProfile.projects.map((project, index) => (
-                            <div key={index} value={project} className="project-card" onClick={(e) =>handleProjClick(e)}>
+                            <div key={index} value={project} className="project-card" onClick={() =>handleProjClick(project)}>
                                 <h4>{project.title}</h4>
                                 <p><strong>Research Area:</strong> {project.researchArea}</p>
                                 <p><strong>Faculty:</strong> {project.faculty}</p>
@@ -228,6 +210,13 @@ function UserProfiles() {
                     </div>
                 </div>
             </div>
+            {show && (
+        <InfoModal
+          show={show}
+          setShow={setShow}
+          info={info}
+        />
+      )}
         </div>
     );
 }
