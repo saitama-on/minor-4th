@@ -9,6 +9,7 @@ import SearchBar from './components/searchBar';
 import AddProject from './components/AddProject';
 import StudentManagement from './components/StudentManagement';
 import UserProfiles from './components/UserProfiles';
+import FacultyProjects from './components/FacultyProjects';
 
 
 
@@ -73,6 +74,11 @@ function App() {
           <Route path="/search" element={
             <PrivateRoute>
               <SearchBar />
+            </PrivateRoute>
+          } />
+          <Route path="/facultyproject" element={
+            <PrivateRoute>
+              <FacultyProjects />
             </PrivateRoute>
           } />
           <Route path="/projects/add" element={

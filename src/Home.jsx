@@ -119,7 +119,7 @@ const Home = () => {
             <h3>Search Projects</h3>
             <p>Browse and search through all projects</p>
           </div>
-          <div className="action-card" onClick={() => navigate('/')}>
+          <div className="action-card" onClick={() => navigate('/facultyproject')}>
             <h3>Faculty wise Project(not functional)</h3>
             <p>Check all projects under a faculty</p>
           </div>
