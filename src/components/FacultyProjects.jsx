@@ -27,7 +27,7 @@ const FacultyProjects = () => {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const projectsSnapshot = await getDocs(collection(db, 'public_projects'));
+      const projectsSnapshot = await getDocs(collection(db, 'projects'));
       
       const projectsList = projectsSnapshot.docs.map(doc => ({
         id: doc.id,
@@ -36,7 +36,7 @@ const FacultyProjects = () => {
       }));
       
       // Extract unique faculty names
-      const uniqueFaculty = [...new Set(projectsList.map(project => project.Faculty).filter(Boolean))].sort();
+      const uniqueFaculty = [...new Set(projectsList.map(project => project.faculty).filter(Boolean))].sort();
       
       setAllProjects(projectsList);
       setFacultyList(uniqueFaculty);
@@ -54,30 +54,10 @@ const FacultyProjects = () => {
   };
 
   // Check if current user can edit a project
-  const canEditProject = (project) => {
-    // Admin and faculty can edit any project
-    if (userRole === 'admin' || userRole === 'faculty') {
-      return true;
-    }
-    
-    // Check if user is a group member of this project
-    const currentUserName = auth.currentUser.displayName?.toLowerCase() || '';
-    const currentUserEmail = auth.currentUser.email.toLowerCase();
-    const groupMembers = project.Group_Members || [];
-    
-    return groupMembers.some(member => {
-      if (!member) return false;
-      const memberLower = member.toLowerCase();
-      return memberLower.includes(currentUserEmail) || 
-             (currentUserName && memberLower.includes(currentUserName)) ||
-             memberLower.includes(currentUserEmail.split('@')[0]);
-    });
-  };
 
-  const handleEditProject = (e, projectId) => {
-    e.stopPropagation(); // Prevent modal from opening
-    navigate(`/projects/${encodeURIComponent(projectId)}/edit`);
-  };
+  
+
+
 
   const getProjectsByFaculty = () => {
     if (selectedFaculty === 'all') {
@@ -85,7 +65,7 @@ const FacultyProjects = () => {
       const groupedProjects = {};
       
       allProjects.forEach(project => {
-        const faculty = project.Faculty || 'Unassigned';
+        const faculty = project.faculty || 'Unassigned';
         if (!groupedProjects[faculty]) {
           groupedProjects[faculty] = [];
         }
@@ -95,7 +75,7 @@ const FacultyProjects = () => {
       return groupedProjects;
     } else {
       // Return only projects for selected faculty
-      const facultyProjects = allProjects.filter(project => project.Faculty === selectedFaculty);
+      const facultyProjects = allProjects.filter(project => project.faculty === selectedFaculty);
       return { [selectedFaculty]: facultyProjects };
     }
   };
@@ -154,10 +134,10 @@ const FacultyProjects = () => {
                       onClick={() => handleProjectClick(project)}
                     >
                       <h3>{project.title_of_project}</h3>
-                      <p><strong>Research Area:</strong> {project.Area_of_Research}</p>
-                      <p><strong>Category:</strong> {project.Category || 'Other'}</p>
-                      <p><strong>Year:</strong> {project.yearOfSubmission || 'Not specified'}</p>
-                      <p><strong>Group Members:</strong> {project.Group_Members?.join(', ') || 'None'}</p>
+                      <p><strong>Research Area:</strong> {project.researchArea}</p>
+                      <p><strong>Category:</strong> {project.category || 'Other'}</p>
+                      <p><strong>Year:</strong> {project.yearOfSubmisson || 'Not specified'}</p>
+                      <p><strong>Group Members:</strong> {project.groupMembers?.join(', ') || 'None'}</p>
                       
                       <div className="project-actions">
                         {project.Report && project.Report !== "" && (
@@ -170,14 +150,6 @@ const FacultyProjects = () => {
                           >
                             View Report
                           </a>
-                        )}
-                        {canEditProject(project) && (
-                          <button 
-                            className="edit-project-btn"
-                            onClick={(e) => handleEditProject(e, project.title_of_project)}
-                          >
-                            Edit Project
-                          </button>
                         )}
                       </div>
                     </div>

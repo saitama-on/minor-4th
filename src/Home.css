@@ -1,7 +1,26 @@
 .home-container {
-  padding: 20px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.home-content {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+}
+
+.left-home {
+  display: none;
+}
+
+.left-home-container {
+  display: none;
+}
+
+.left-option {
+  display: none;
 }
 
 .navbar {

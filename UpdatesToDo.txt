@@ -2,10 +2,10 @@ yash {
 
     1.Make upload fileUrl functional by verifying name of the authenticated user before
     rendering of upload section;
-    2.Add faculty wise Project section functional
+    2.Add faculty wise Project section functional --> done
     3. optimise the number of reads in all components , rn too many reads happening.
     4. approval of uploaded file of a project by assigned faculty using email verification.
-    5. make a notice board with read access to all but write to only admin.
+    5. make a notice board with read access to all but write to only admin. --> working on
     6. edit project details options (permissons not decided yet)
 
 }
@@ -13,6 +13,6 @@ yash {
 nishikant {
     1.faculty wise project section -> make easier to navigate.
     2. improve modal.jsx ui/ux .
-    
 
 }
+

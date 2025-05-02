@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc ,getDocs , collection} from 'firebase/firestore';
 import './Home.css';
+import './styles/FacultyProjects.css'
 import InfoModal from './components/modal.jsx';
 
 const Home = () => {
@@ -86,14 +87,12 @@ const Home = () => {
     setShowModal(true);
   };
 
-  
-
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div className="home-container">
+    <div className="home-content">
       <nav className="navbar">
         <h1>Project Management System</h1>
         <div className="nav-buttons">
@@ -120,12 +119,9 @@ const Home = () => {
             <p>Browse and search through all projects</p>
           </div>
           <div className="action-card" onClick={() => navigate('/facultyproject')}>
-            <h3>Faculty wise Project(not functional)</h3>
+            <h3>Faculty wise Project</h3>
             <p>Check all projects under a faculty</p>
           </div>
-          
-         
-          
         </div>
       </div>
 
@@ -148,9 +144,9 @@ const Home = () => {
                 <p><strong>Category:</strong> {project.category}</p>
                 <p><strong>Group Members:</strong> {project.groupMembers.join(' ,')}
                 </p>
-                {project.Report!="" && (
+                {project.fileUrl!="" && (
                   <a 
-                    href={project.Report} 
+                    href={project.fileUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="view-file"

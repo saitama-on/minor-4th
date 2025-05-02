@@ -10,8 +10,31 @@ import AddProject from './components/AddProject';
 import StudentManagement from './components/StudentManagement';
 import UserProfiles from './components/UserProfiles';
 import FacultyProjects from './components/FacultyProjects';
+import Sidebar from './components/Sidebar';
+import './App.css';
 
-
+// Simple NoticeBoard component
+const NoticeBoard = () => {
+  return (
+    <div className="notice-board-container">
+      <nav className="navbar">
+        <h1>Notice Board</h1>
+      </nav>
+      <div className="notice-board-content">
+        <div className="notice-card">
+          <h2>Welcome to the Notice Board</h2>
+          <p>This is where important announcements and notifications will appear.</p>
+          <p className="notice-date">Posted on: {new Date().toLocaleDateString()}</p>
+        </div>
+        <div className="notice-card">
+          <h2>No New Notices</h2>
+          <p>There are no new notices at the moment. Check back later for updates.</p>
+          <p className="notice-date">Posted on: {new Date().toLocaleDateString()}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Create AuthContext
 export const AuthContext = createContext();
@@ -48,15 +71,22 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// PrivateRoute component
-const PrivateRoute = ({ children }) => {
+// AppLayout component for pages that should have the sidebar
+const AppLayout = ({ children }) => {
   const { user } = useAuth();
   
   if (!user) {
     return <Navigate to="/login" />;
   }
 
-  return children;
+  return (
+    <div className="app-layout">
+      <Sidebar />
+      <div className="main-content">
+        {children}
+      </div>
+    </div>
+  );
 };
 
 function App() {
@@ -67,36 +97,41 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={
-            <PrivateRoute>
+            <AppLayout>
               <Home />
-            </PrivateRoute>
+            </AppLayout>
           } />
           <Route path="/search" element={
-            <PrivateRoute>
+            <AppLayout>
               <SearchBar />
-            </PrivateRoute>
+            </AppLayout>
           } />
           <Route path="/facultyproject" element={
-            <PrivateRoute>
+            <AppLayout>
               <FacultyProjects />
-            </PrivateRoute>
+            </AppLayout>
           } />
           <Route path="/projects/add" element={
-            <PrivateRoute>
+            <AppLayout>
               <AddProject />
-            </PrivateRoute>
+            </AppLayout>
           } />
           <Route path="/students" element={
-            <PrivateRoute>
+            <AppLayout>
               <StudentManagement />
-            </PrivateRoute>
+            </AppLayout>
           } />
           <Route path="/profiles/:username" element={
-            <PrivateRoute>
+            <AppLayout>
               <UserProfiles />
-            </PrivateRoute>
+            </AppLayout>
           } />
-          
+          {/* Add route for Notice Board */}
+          <Route path="/notice-board" element={
+            <AppLayout>
+              <NoticeBoard />
+            </AppLayout>
+          } />
         </Routes>
       </Router>
     </AuthProvider>
