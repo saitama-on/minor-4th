@@ -21,7 +21,7 @@ const StudentManagement = () => {
   useEffect(() => {
     const checkAdmin = async () => {
       if (auth.currentUser) {
-        const adminEmails = ['yash23100@iiitnr.edu.in'];
+        const adminEmails = ['yashjoshi6787@gmail.com'];
         setIsAdmin(adminEmails.includes(auth.currentUser.email));
       }
     };

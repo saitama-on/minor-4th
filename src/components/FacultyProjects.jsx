@@ -133,7 +133,7 @@ const FacultyProjects = () => {
                       className="project-card"
                       onClick={() => handleProjectClick(project)}
                     >
-                      <h3>{project.title_of_project}</h3>
+                      <h3>{project.title}</h3>
                       <p><strong>Research Area:</strong> {project.researchArea}</p>
                       <p><strong>Category:</strong> {project.category || 'Other'}</p>
                       <p><strong>Year:</strong> {project.yearOfSubmisson || 'Not specified'}</p>

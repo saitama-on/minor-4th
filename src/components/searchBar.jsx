@@ -35,6 +35,7 @@ export default function SearchBar() {
   const [filteredData, setFilteredData] = useState([]);
   const [facultyArray, setFacultyArray] = useState(["ALL"]);
   const navigate = useNavigate();
+  const [count , setCount] = useState(0);
 
   useEffect(() => {
     // Check authentication
@@ -55,8 +56,10 @@ export default function SearchBar() {
         const projectsData = {};
         querySnapshot.forEach((doc) => {
           projectsData[doc.id] = doc.data();
+          setCount((prev)=> prev+1);
         });
-        console.log(projectsData)
+        // console.log(projectsData)
+        
         setJsonData(projectsData);
         setLoading(false);
         // console.log(projectsData);
@@ -170,6 +173,7 @@ export default function SearchBar() {
         <button onClick={navigateToAddProject} className="add-project-btn">
           Add Project
         </button>
+        <div>Total Projects : {count}</div>
       </div>
 
       <div className="projects-grid">

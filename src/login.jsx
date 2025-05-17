@@ -27,9 +27,10 @@ const Login = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+      console.log(user.email)
       
       // Check if email ends with @iiitnr.edu.in
-      if (!user.email.endsWith('@iiitnr.edu.in')) {
+      if (!(user.email.endsWith('@iiitnr.edu.in') || user.email=== 'yashjoshi6787@gmail.com')) {
         // Sign out the user if email is not from IIITNR
         await signOut(auth);
         setError('Only IIITNR email addresses (@iiitnr.edu.in) are allowed to login');

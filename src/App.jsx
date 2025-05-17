@@ -10,31 +10,32 @@ import AddProject from './components/AddProject';
 import StudentManagement from './components/StudentManagement';
 import UserProfiles from './components/UserProfiles';
 import FacultyProjects from './components/FacultyProjects';
+import NoticeBoard from './components/NoticeBoard';
 import Sidebar from './components/Sidebar';
 import './App.css';
 
 // Simple NoticeBoard component
-const NoticeBoard = () => {
-  return (
-    <div className="notice-board-container">
-      <nav className="navbar">
-        <h1>Notice Board</h1>
-      </nav>
-      <div className="notice-board-content">
-        <div className="notice-card">
-          <h2>Welcome to the Notice Board</h2>
-          <p>This is where important announcements and notifications will appear.</p>
-          <p className="notice-date">Posted on: {new Date().toLocaleDateString()}</p>
-        </div>
-        <div className="notice-card">
-          <h2>No New Notices</h2>
-          <p>There are no new notices at the moment. Check back later for updates.</p>
-          <p className="notice-date">Posted on: {new Date().toLocaleDateString()}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const NoticeBoard = () => {
+//   return (
+//     <div className="notice-board-container">
+//       <nav className="navbar">
+//         <h1>Notice Board</h1>
+//       </nav>
+//       <div className="notice-board-content">
+//         <div className="notice-card">
+//           <h2>Welcome to the Notice Board</h2>
+//           <p>This is where important announcements and notifications will appear.</p>
+//           <p className="notice-date">Posted on: {new Date().toLocaleDateString()}</p>
+//         </div>
+//         <div className="notice-card">
+//           <h2>No New Notices</h2>
+//           <p>There are no new notices at the moment. Check back later for updates.</p>
+//           <p className="notice-date">Posted on: {new Date().toLocaleDateString()}</p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 // Create AuthContext
 export const AuthContext = createContext();
