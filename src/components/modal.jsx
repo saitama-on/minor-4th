@@ -3,7 +3,7 @@ import '../styles/modal.css';
 import { initializeApp } from "firebase/app";
 import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore, collection, query, where, getDocs, addDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, addDoc, updateDoc , doc } from 'firebase/firestore';
 import { ThreeDot } from 'react-loading-indicators';
 import { useNavigate } from 'react-router-dom';
 import { OrbitProgress } from 'react-loading-indicators';
@@ -32,6 +32,12 @@ function InfoModal({ show, setShow, info }) {
   const [projectDoc, setProjectDoc] = useState(null);
   const navigate = useNavigate();
   const [showToast , setShowToast]  = useState(false);
+  const [url , setUrl] = useState();
+
+
+  useEffect(()=>{
+    
+  })
 
   // useEffect(() => {
   //   const fetchProject = async () => {
@@ -73,7 +79,7 @@ function InfoModal({ show, setShow, info }) {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-    alert('this feature is under work!!!!!')
+    // alert('this feature is under work!!!!!')
   };
 
   const handleMemberClick = (member, e) => {
@@ -84,48 +90,54 @@ function InfoModal({ show, setShow, info }) {
     navigate(`/profiles/${encodedUsername}`); // Navigate to member's profile
   };
 
-  // const uploadData = async () => {
-  //   try {
-  //     // Create a safe file path using project title
-  //     let booli =0;
-  //     for (let i=0 ; i<info['Group_Members'].length ; i++){
-  //       if(info['Group_Members'][i] === auth.currentUser.DisplayName){
-  //         booli =1;
-  //         break;
-  //       }
-  //     }
+  const uploadData = async () => {
+    try {
+      // Create a safe file path using project title
+      let booli =0;
+      for (let i=0 ; i<info['groupMembers'].length ; i++){
+        if(info['groupMembers'][i] === auth.currentUser.displayName){
+          booli =1;
+          break;
+        }
+      }
+      console.log(auth.currentUser)
 
-  //     if(!booli){
-  //       notify_err("You are not part of this Project");
-  //       return;
-  //     }
+      if(!booli){
+        notify_err("You are not part of this Project");
+        return;
+      }
 
 
       
-  //     const safeProjectTitle = info['title_of_project'].replace(/[^a-zA-Z0-9]/g, '_');
-  //     const storageRef = ref(storage, `project-files/${auth.currentUser.uid}/${safeProjectTitle}/${file.name}`);
+      const safeProjectTitle = info['title'].replace(/[^a-zA-Z0-9]/g, '_')+'_'+info['yearOfSubmisson'];
+      const storageRef = ref(storage, `project-files/${safeProjectTitle}/${file.name}`);
       
-  //     await uploadBytes(storageRef, file);
-  //     const url = await getDownloadURL(storageRef);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      // console.log(url)
+      setUrl(url);
       
-  //     // Update or create document in public_projects collection
-  //     const projectData = {
-  //       Report: url,
-  //       updated_at: new Date(),
-  //       updated_by: auth.currentUser.email
-  //     };
+      // Update or create document in public_projects collection
+      const q = query(
+        collection(db, "projects"),
+        where("title", "==", info['title']),
+        where("yearOfSubmisson", "==", info['yearOfSubmisson'])
+      );
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        const projectDoc = querySnapshot.docs[0];
+        await updateDoc(doc(db, "projects", projectDoc.id), {
+          fileUrl: url
+        });
+      }
+      
 
-  //     if (projectDoc) {
-  //       // Update existing document
-  //       await updateDoc(projectDoc.ref, projectData);
-  //     } 
-
-  //     notify_succ('Uploaded Successfully');
-  //   } catch (err) {
-  //     console.error('Error uploading:', err);
-  //     alert('Upload failed. Please try again.');
-  //   } 
-  // };
+      notify_succ('Uploaded Successfully');
+    } catch (err) {
+      console.error('Error uploading:', err);
+      alert('Upload failed. Please try again.');
+    } 
+  };
 
 
   return (
@@ -190,12 +202,15 @@ function InfoModal({ show, setShow, info }) {
                   <span className="span-text">Report :</span>
                   <a href={info.fileUrl} target="_blank" rel="noopener noreferrer">View Report</a>
                 </div>
-              ) : (
+              ) : url ? (<div className="inside-modal-div">
+              <span className="span-text">Report :</span>
+              <a href={url} target="_blank" rel="noopener noreferrer">View Report</a>
+            </div>): (
                 <div className="inside-modal-div upload-section">
                   <span className="span-text">Upload Report:</span>
                   <p>Is this your project? You can upload the report.</p>
                   <input type="file" onChange={handleFileChange} accept=".pdf"></input>
-                  {/* <button onClick={handleAuth}>Upload Report</button> */}
+                  <button onClick={uploadData}>Upload Report</button>
                 </div>
               )}
             </div>

@@ -56,10 +56,10 @@ export default function SearchBar() {
         const projectsData = {};
         querySnapshot.forEach((doc) => {
           projectsData[doc.id] = doc.data();
-          setCount((prev)=> prev+1);
+          // setCount((prev)=> prev+1);
         });
         // console.log(projectsData)
-        
+        setCount(Object.keys(projectsData).length)
         setJsonData(projectsData);
         setLoading(false);
         // console.log(projectsData);

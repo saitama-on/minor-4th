@@ -5,6 +5,8 @@ import { getFirestore, doc, getDoc, setDoc ,getDocs , collection} from 'firebase
 import './Home.css';
 import './styles/FacultyProjects.css'
 import InfoModal from './components/modal.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const [userProjects, setUserProjects] = useState([]);
@@ -144,17 +146,17 @@ const Home = () => {
                 <p><strong>Category:</strong> {project.category}</p>
                 <p><strong>Group Members:</strong> {project.groupMembers.join(' ,')}
                 </p>
-                {project.fileUrl!="" && (
+                
                   <a 
                     href={project.fileUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="view-file"
-                    onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
+                    onClick={project.fileUrl ? (e) => e.stopPropagation() : () => toast.error('Report not uploaded yet')} // Prevent modal from opening when clicking the link
                   >
                     View Report
                   </a>
-                )}
+                
               </div>
             ))}
           </div>
@@ -175,6 +177,7 @@ const Home = () => {
           info={selectedProject}
         />
       )}
+      <ToastContainer position="top-center" />
     </div>
   );
 };

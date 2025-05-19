@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getFirestore, doc, setDoc, collection, addDoc , getDocs , query} from 'firebase/firestore';
+import { ToastContainer, toast } from 'react-toastify';
 import '../styles/AddProject.css';
 
 const AddProject = () => {
@@ -28,40 +29,41 @@ const AddProject = () => {
 
   const [groupMembers, setGroupMembers] = useState([]);
 
+  const notify_err = (msg) => toast.error(msg);
+  const notify_suc = (msg) => toast.success(msg);
+
+  const fetchFacultyData = async () => {
+    try {
+      const facultyquery = await getDocs(collection(db , 'faculty'));
+      const facultyList = facultyquery.docs.map((doc)=>doc.data().name);
+      
+      // console.log(faculty)
+      setFacultyArray(facultyList);
+      // console.log(studentquery.docs)
+
+      
+    } catch (error) {
+      console.error('Error fetching faculty data:', error);
+      setError('Error loading faculty data. Please try again.');
+    }
+  };
+
   useEffect(() => {
     // Check if user is authenticated
     if (!auth.currentUser) {
       navigate('/login');
       return;
     }
-
-    const fetchFacultyData = async () => {
-      try {
-        // const facultyUrl = await getDownloadURL(ref(storage, 'student/faculty.json'));
-        // const response = await fetch(`https://cors-anywhere-wbl8.onrender.com/${facultyUrl}`);
-        // const data = await response.json();
-        // setFacultyArray(Object.keys(data));
-
-        const facultyquery = await getDocs(collection(db , 'faculty'));
-        const facultyList = facultyquery.docs.map((doc)=>{
-          setFacultyArray((prev)=> {
-            return [...prev , doc.data().name]
-          });
-        })
-        console.log(faculty)
-        // setFacultyArray(facultyList);
-        // console.log(studentquery.docs)
-
-        
-      } catch (error) {
-        console.error('Error fetching faculty data:', error);
-        setError('Error loading faculty data. Please try again.');
-      }
-    };
+  
 
     fetchFacultyData();
-  }, [storage, auth.currentUser, navigate]);
+  }, []);
 
+ 
+  useEffect(()=>{
+    setFaculty(facultyArray[0]);
+    facultyArray.sort();
+  },[facultyArray])
 
     const loadStudents = async () => {
       try {
@@ -126,6 +128,7 @@ const AddProject = () => {
 
   const handleFileChange = (e) => {
     const uploadedFile = e.target.files[0];
+    // toast.info("uplaoduing")
     if (uploadedFile && uploadedFile.type === 'application/pdf') {
       setFile(uploadedFile);
       setError('');
@@ -203,10 +206,15 @@ const AddProject = () => {
       //   created_by: auth.currentUser.email
       // });
 
-      navigate('/search');
+      notify_suc('Project added successfully');
+      setTimeout(()=>{
+        navigate('/search');
+      },2000)
+      
     } catch (error) {
       console.error('Error adding project:', error);
       setError('Failed to add project. Please try again.');
+      notify_err('Failed to add project. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -352,6 +360,7 @@ const AddProject = () => {
           {loading ? 'Adding Project...' : 'Add Project'}
         </button>
       </form>
+      <ToastContainer position="top-center" />
     </div>
   );
 };
